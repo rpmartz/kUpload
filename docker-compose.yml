@@ -1,0 +1,11 @@
+version: '2.0'
+
+services:
+  db:
+    image: postgres:9.6.1
+    ports:
+          - "5432:5432"
+    environment:
+      - POSTGRES_USER=${KUPLOAD_DB_USER}
+      - POSTGRES_PASSWORD=${KUPLOAD_DB_PASSWORD}
+      - POSTGRES_DB=${KUPLOAD_DB_NAME}
