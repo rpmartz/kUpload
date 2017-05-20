@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		kotlinVersion = '1.1.2'
 		springBootVersion = '2.0.0.M1'
+		awsSdkVersion = '1.11.132'
 	}
 	repositories {
 		mavenCentral()
@@ -45,6 +46,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+	compile("com.amazonaws:aws-java-sdk-s3:${awsSdkVersion}")
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
