@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: ${KUPLOAD_DB_URL}
+    username: ${KUPLOAD_DB_USERNAME}
+    password: ${KUPLOAD_DB_PASSWORD}
+
+  jpa:
+    hibernate.ddl-auto: ${HIBERNATE_DDL_SETTING}
+
+aws:
+  access-key: ${AWS_ACCESS_KEY}
+  secret-key: ${AWS_SECRET_KEY}
+  error-notification-arn: ${SNS_NOTIFICATION_ARN}
+
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+        security: INFO
+
+    com:
+      ryanpmartz: INFO
