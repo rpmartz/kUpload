@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ice Cream Voting</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/custom.css}" href="static/custom.css"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div class="navbar navbar-default navbar-fixed-top" th:fragment="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">Ice Cream Voting</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a th:href="@{/admin/results}">Results</a></li>
+                        <li><a th:href="@{/admin/audit-log}">Audit Log</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Help <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="download">
+                        <li><a th:href="@{/help}">Learn More</a></li>
+                        <li class="divider"></li>
+                        <li><a href="mailto:ryan+votemsupport@ryanpmartz.com">Contact Support</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Logout</a>
+                    <a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Log In</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
