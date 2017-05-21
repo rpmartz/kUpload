@@ -2,12 +2,18 @@ package com.ryanpmartz.kupload.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.annotation.Resource;
 
 /**
  * Configuration Class for all security-related Spring configuration.
@@ -16,14 +22,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Resource
-//    private UserDetailsService userDetailsService;
-//
-//    @Resource
-//    private SimpleUrlAuthenticationSuccessHandler successHandler;
-//
-//    @Resource
-//    private SimpleUrlAuthenticationFailureHandler authFalureHandler;
+    @Resource
+    private UserDetailsService userDetailsService;
+
+    @Resource
+    private SimpleUrlAuthenticationSuccessHandler successHandler;
+
+    @Resource
+    private SimpleUrlAuthenticationFailureHandler authFalureHandler;
 
     @Bean
     public PasswordEncoder bcryptEncoder() {
@@ -47,8 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-//                .successHandler(successHandler)
-//                .failureHandler(authFalureHandler)
+                .successHandler(successHandler)
+                .failureHandler(authFalureHandler)
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -60,8 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(bcryptEncoder());
-//    }
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(bcryptEncoder());
+    }
 }
