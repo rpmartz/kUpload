@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+
+<div class="container mt-75">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offfset-2">
+            <h1>Register</h1>
+            <div class="well bs-component">
+                <form action="#" th:action="@{/register}" th:object="${registrationForm}" method="post"
+                      class="form-horizontal">
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Please correct the errors noted below in the form before resubmitting.
+                    </div>
+                    <fieldset>
+                        <h3>Account Information</h3>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" th:field="*{email}"
+                                   placeholder="Email"/>
+                            <span class="help-text text-danger" th:each="err : ${#fields.errors('email')}"
+                                  th:text="${err}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}"
+                                   placeholder="First Name"/>
+                            <span class="help-text text-danger" th:each="err : ${#fields.errors('firstName')}"
+                                  th:text="${err}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" th:field="*{lastName}"
+                                   placeholder="First Name"/>
+                            <span class="help-text text-danger" th:each="err : ${#fields.errors('lastName')}"
+                                  th:text="${err}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" th:field="*{password}"
+                                   placeholder="Password"/>
+                            <span class="help-text text-danger" th:each="err : ${#fields.errors('password')}"
+                                  th:text="${err}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword"
+                                   th:field="*{confirmPassword}" placeholder="Confirm Password"/>
+                            <span class="help-text text-danger" th:each="err : ${#fields.errors('confirmPassword')}"
+                                  th:text="${err}"></span>
+                        </div>
+                        <div class="form-group">
+                            <a th:href="@{/}" class="btn btn-default">Cancel</a>
+                            <input type="submit" class="btn btn-primary" value="Register"/>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
