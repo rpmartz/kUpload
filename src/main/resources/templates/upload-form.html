@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+
+<div class="container mt-75">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offfset-2">
+            <h1>Upload Form</h1>
+            <div class="well bs-component">
+                <form action="#" th:action="@{/upload}" th:object="${uploadForm}" method="post"
+                      class="form-horizontal" enctype="multipart/form-data">
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Please correct the errors noted below in the form before resubmitting.
+                    </div>
+                    <fieldset>
+                        <h3>File</h3>
+                        <div class="form-group">
+                            <label for="file">Choose File</label>
+                            <input type="file" class="form-control" id="file" th:field="*{file}"
+                                   placeholder="File"/>
+                            <span class="help-text text-danger" th:each="err : ${#fields.errors('file')}"
+                                  th:text="${err}"></span>
+                        </div>
+                        <div class="form-group">
+                            <a th:href="@{/}" class="btn btn-default">Cancel</a>
+                            <input type="submit" class="btn btn-primary" value="Upload"/>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
