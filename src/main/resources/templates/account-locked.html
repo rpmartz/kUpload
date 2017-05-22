@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+
+<div class="container mt-75">
+    <div class="col-xs-6 col-xs-offset-3">
+        <div class="well">
+            <h3>Account Locked</h3>
+            <p>For your security, your account has been locked due to suspicious activity. Please
+                <a href="mailto:ryan+votemsupport@ryanpmartz.com">contact support</a> to unlock your account.</p>
+            <div class="col-xs-offset-3">
+                <a class="btn btn-info" th:href="@{/}">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

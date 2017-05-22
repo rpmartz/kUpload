@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+
+<div class="container mt-75">
+    <div class="col-xs-6 col-xs-offset-3">
+        <div class="well">
+            <h2>Registration Complete</h2>
+            <p>Thank you for registering to vote online. We have received your registration and will send you a
+                personal identification code (PIN) via postal mail that you can use to vote. If you have not received
+                your code within 10 business days, please <a href="mailto:ryan+votemsupport@ryanpmartz.com">contact
+                    support.</a></p>
+            <div class="col-xs-offset-3">
+                <a class="btn btn-info" th:href="@{/}">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
