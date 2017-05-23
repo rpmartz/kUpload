@@ -1,7 +1,9 @@
 package com.ryanpmartz.kupload.web
 
+import com.ryanpmartz.kupload.service.UploadService
 import com.ryanpmartz.kupload.web.form.UploadForm
 import org.apache.log4j.Logger
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 
 @Controller
-class UploadController {
-
+class UploadController @Autowired
+constructor(private val uploadService: UploadService) {
 
     @GetMapping("/uploads/new")
     fun uploadForm(@ModelAttribute uploadForm: UploadForm): String {
@@ -25,7 +27,7 @@ class UploadController {
             return uploadForm(uploadForm)
         }
 
-        log.info("Uploading file ${file.originalFilename}")
+        uploadService.uploadFile(file)
 
         return "redirect:uploads/new"
 

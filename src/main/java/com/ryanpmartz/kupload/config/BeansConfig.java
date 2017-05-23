@@ -4,9 +4,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.transfer.TransferManager;
-import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
+import com.amazonaws.services.s3.AmazonS3Client;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +24,9 @@ public class BeansConfig {
     }
 
     @Bean
-    public TransferManager transferManager() {
+    @SuppressWarnings("deprecation")
+    public AmazonS3Client transferManager() {
         AWSCredentialsProvider staticProvider = new AWSStaticCredentialsProvider(awsCredentials());
-        return TransferManagerBuilder.standard()
-                .withS3Client(AmazonS3ClientBuilder.standard().withCredentials(staticProvider).withRegion("us-east-1").build()).build();
+        return new AmazonS3Client(staticProvider);
     }
 }
