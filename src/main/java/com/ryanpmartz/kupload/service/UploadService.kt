@@ -15,7 +15,7 @@ import java.util.*
 class UploadService @Autowired
 constructor(private val s3Client: AmazonS3Client, @Value("\${aws.s3.bucket}") private val s3Bucket: String) {
 
-    fun uploadFile(multipartFile: MultipartFile) {
+    fun uploadFile(multipartFile: MultipartFile): String {
         val extension = determineExtension(multipartFile)
         val filename = UUID.randomUUID().toString() + "." + extension
 
@@ -25,6 +25,8 @@ constructor(private val s3Client: AmazonS3Client, @Value("\${aws.s3.bucket}") pr
 
             s3Client.putObject(req)
         }
+
+        return filename
 
     }
 
