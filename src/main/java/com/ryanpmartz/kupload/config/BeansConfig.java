@@ -29,6 +29,6 @@ public class BeansConfig {
     public TransferManager transferManager() {
         AWSCredentialsProvider staticProvider = new AWSStaticCredentialsProvider(awsCredentials());
         return TransferManagerBuilder.standard()
-                .withS3Client(AmazonS3ClientBuilder.standard().withCredentials(staticProvider).build()).build();
+                .withS3Client(AmazonS3ClientBuilder.standard().withCredentials(staticProvider).withRegion("us-east-1").build()).build();
     }
 }
